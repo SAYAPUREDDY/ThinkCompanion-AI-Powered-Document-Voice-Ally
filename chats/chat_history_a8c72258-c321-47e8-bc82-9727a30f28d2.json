@@ -1,0 +1,34 @@
+[
+    {
+        "role": "User",
+        "content": "hellooo"
+    },
+    {
+        "role": "AI",
+        "content": "Hello there! How can I help you today?\n"
+    },
+    {
+        "role": "User",
+        "content": "what is self driving car ?"
+    },
+    {
+        "role": "AI",
+        "content": "Based on the provided text, a self-driving car uses object recognition algorithms and road dividers to stay on the road.  It leverages technologies like ROS and machine vision.  The research involved uses road dividers as markers for the car to follow.\n"
+    },
+    {
+        "role": "User",
+        "content": "can you make three questions based on the given file"
+    },
+    {
+        "role": "AI",
+        "content": "1. What is the focus of the paper by Cho and Choi (reference [4])?\n2.  Which paper discusses the DARPA Grand Challenge and its implications for autonomous vehicle systems (reference [5], [6])?\n3. What is the subject of Khatib's research (reference [7])?\n"
+    },
+    {
+        "role": "User",
+        "content": "what is your name "
+    },
+    {
+        "role": "AI",
+        "content": "My name is Igris.\n"
+    }
+]
