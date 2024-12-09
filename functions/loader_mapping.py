@@ -24,8 +24,6 @@ def loader_mapping(content_type: str, uploaded_file):
             "text/plain": loader_instance.load_text,
             "application/pdf": loader_instance.load_pdf,
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document": loader_instance.load_docx,
-            "application/vnd.ms-excel": loader_instance.load_csv,
-            "text/html": loader_instance.load_html,
             "image/png": loader_instance.load_image,
             "image/jpeg": loader_instance.load_image,
         }
