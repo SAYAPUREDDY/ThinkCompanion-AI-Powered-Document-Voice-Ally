@@ -8,6 +8,9 @@ from io import BytesIO
 from langchain_community.document_loaders import Docx2txtLoader
 from langchain_community.document_loaders.csv_loader import CSVLoader
 from langchain_community.document_loaders.image import UnstructuredImageLoader
+import pytesseract
+import google.generativeai as genai
+import PIL.Image
 
 
 
@@ -80,16 +83,23 @@ class Loaders:
     #     except Exception as e:
     #         raise ValueError(f"Error fetching content from URL '{url}': {e}")
 
-    # def load_image(self, uploaded_file) -> list:
-    #     """Extracts text from an image (placeholder for future implementation)."""
-    #     try:
-    #         documents=[]
-    #         loader = UnstructuredImageLoader(uploaded_file)
-    #         documents = loader.load()
-    #         # Implement your image text extraction logic here, e.g., using OCR
-    #         return documents
-    #     except Exception as e:
-    #         raise ValueError(f"Error reading image file: {e}")
+    def load_image(self, uploaded_file) -> list:
+        """Extracts text from an image (placeholder for future implementation)."""
+        try:
+            documents=[]
+            GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+            genai.configure(api_key=GOOGLE_API_KEY)
+            model = genai.GenerativeModel("gemini-1.5-flash")
+            image = PIL.Image.open(uploaded_file)
+            prompt= "for the given input image.if the image has text , extract the text from the image and return the text.if the image has only objects, return the summary of the image"
+            response = model.generate_content([prompt, image])
+           
+            if response:
+                documents.append(Document(page_content=response.text, metadata={"title": "document"}))
+
+            return documents
+        except Exception as e:
+            raise ValueError(f"Error reading image file: {e}")
 
     # def load_directory(self, directory_path: str) -> str:
     #     """Loads all files from a directory (placeholder for future implementation)."""
