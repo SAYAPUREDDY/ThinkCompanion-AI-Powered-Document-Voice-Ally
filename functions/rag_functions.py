@@ -15,6 +15,7 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from functions.loader_mapping import loader_mapping
+from functions.model_loader import ModelInitializer
 
 # Suppress warnings
 warnings.filterwarnings("ignore")
@@ -31,12 +32,14 @@ os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
 os.environ["LANGCHAIN_PROJECT"] = LANGCHAIN_PROJECT
 
+model_initializer = ModelInitializer()
+
 # Initialize embeddings and LLM
 try:
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-    print("Embeddings initialized successfully.")
-    model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", convert_system_message_to_human=True)
-    print("LLM initialized successfully.")
+    embeddings = model_initializer.initialize_google_embeddings()
+    # print("Embeddings initialized successfully.")
+    model = model_initializer.initialize_gemini_flash()
+    # print("LLM initialized successfully.")
 except Exception as e:
     raise RuntimeError(f"Error initializing embeddings or LLM: {e}")
 
