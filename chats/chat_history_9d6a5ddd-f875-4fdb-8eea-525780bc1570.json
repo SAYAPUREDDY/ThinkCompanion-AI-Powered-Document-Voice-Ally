@@ -1,0 +1,34 @@
+[
+    {
+        "role": "User",
+        "content": "hello"
+    },
+    {
+        "role": "AI",
+        "content": "Hello there!  How can I help you today?\n"
+    },
+    {
+        "role": "User",
+        "content": "what is the document ?"
+    },
+    {
+        "role": "AI",
+        "content": "The document appears to be a resume or CV showcasing Jiji Morooliparambil Joy's technical skills.  It lists programming languages, AI/ML/DL frameworks, data visualization tools, and DevOps tools.\n"
+    },
+    {
+        "role": "User",
+        "content": "what are her skills "
+    },
+    {
+        "role": "AI",
+        "content": "Jiji Morooliparambil Joy's skills include Python, C, C++, Matlab programming;  NumPy and Pandas for machine learning; PyTorch and TensorFlow for deep learning; Matplotlib and Pandas for data visualization; OpenCV for computer vision; and Git for DevOps.\n"
+    },
+    {
+        "role": "User",
+        "content": "what is her name "
+    },
+    {
+        "role": "AI",
+        "content": "Her name is Jiji Morooliparambil Joy.\n"
+    }
+]
