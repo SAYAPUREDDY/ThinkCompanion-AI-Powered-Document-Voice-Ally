@@ -14,7 +14,7 @@ from langchain_core.messages import HumanMessage, AIMessage
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
-from functions.loader_mapping import loader_mapping
+# from functions.loader_mapping import loader_mapping
 from functions.model_loader import ModelInitializer
 
 # Suppress warnings
@@ -48,7 +48,7 @@ system_prompt = (
     "You are a friendly assistant named Igris. "
     "For general conversations, greetings, or casual chat, respond in a friendly and engaging manner. "
     "For specific questions that require context, use the following pieces of retrieved context to answer. "
-    "If you don't know the answer, say 'I don't know'. "
+    "If you don't know the answer from the document, refer from your resources and make sure to answer the question"
     "Keep your answers concise and to the point, with a maximum of three sentences. "
     "Use the retrieved context only if the question is related to the document you have processed. "
     "For general chats like 'hi', 'hello', or any casual conversation, feel free to respond naturally without referring to the document. "
