@@ -5,7 +5,6 @@ import os
 from pdfminer.high_level import extract_text as extract_pdf_text
 from docx import Document as DocxDocument
 from PIL import Image
-import pytesseract
 import mimetypes
 from fastapi import FastAPI
 import uvicorn
