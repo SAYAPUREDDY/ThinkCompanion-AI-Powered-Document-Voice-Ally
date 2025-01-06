@@ -6,7 +6,7 @@ from functions.rag_functions import rag_pipeline, process_uploaded_file
 # from functions.loader_mapping import loader_mapping
 # from functions.mime_detect import get_mime_type
 from functions.update_chat import update_chat_history
-from utils.chats_utils import get_chat_session,create_chat_session,update_chat_session
+from database.chats_utils import get_chat_session,create_chat_session,update_chat_session
 from functions.multiple_file_processor import process_files
 # from utils.extracted_texts import create_upload_record 
 from langchain_core.documents import Document

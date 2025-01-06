@@ -10,7 +10,7 @@ from fastapi import FastAPI
 import uvicorn
 from langchain_core.documents import Document
 import os
-from utils.extracted_texts import upsert_upload_record
+from database.extracted_texts import upsert_upload_record
 
 import google.generativeai as genai
 import PIL.Image

@@ -5,7 +5,7 @@ import json
 from functions.update_chat import update_chat_history
 from functions.rag_functions import rag_pipeline, process_uploaded_file
 from database.connection import database
-from utils.chats_utils import get_chat_session
+from database.chats_utils import get_chat_session
 
 chat_collection = database.get_collection("chats")
 
