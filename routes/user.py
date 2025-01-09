@@ -69,3 +69,39 @@ async def verify_email(email:str,verification_code:str):
     else:
         return {"message":"Incorrect Verification code"}
 
+@router.post("/forgot-password", response_description="Forget password")
+async def forgot_password(email: str ):
+    # Check if the user exists
+    user = await  User_database.get_user_from_email(email)
+    if user == "RecordNotFound":
+        raise HTTPException(status_code=404, detail="User not found")
+    # Generate reset token
+    reset_token = await user_functions.generate_reset_token()
+    # Update user with reset token
+    user["reset_token"] = reset_token
+    await User_database.update_user(user["id"], user)
+    # Send reset email
+    mail_sent = await user_functions.send_reset_password_email(email, reset_token)
+    if mail_sent:
+        return {"message": "Password reset instructions sent to your email", "reset_token": reset_token}
+    else:
+        raise HTTPException(status_code=500, detail="Failed to send reset instructions")
+    
+@router.post("/reset-password", response_description="Reset password")
+async def reset_password(email: str, reset_token: str, new_password: str):
+    # Retrieve user by email
+    user = await User_database.get_user_from_email(email)
+    if user == "RecordNotFound":
+        raise HTTPException(status_code=404, detail="User not found")
+
+    # Verify reset token
+    if user.get("reset_token") != reset_token:
+        raise HTTPException(status_code=400, detail="Invalid or expired reset token")
+
+    # Update user password
+    user["password"] = await user_functions.get_password_hash(new_password)
+    # Remove reset_token field
+    user.pop("reset_token", None)
+    updated_user=await User_database.update_user(user["id"], user)
+    if updated_user is not None:
+        return {"message": "Password reset successfully"}
